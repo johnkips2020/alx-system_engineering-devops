@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Configures a web server
+apt update
+apt -y install nginx
+mkdir -p /var/www/html
+echo "Holberton School" > /var/www/html/index.html
+service nginx start

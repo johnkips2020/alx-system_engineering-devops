@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Configure a Nginx server with an HTTP 404 error
+
+# Install Nginx
+apt update
+apt -y install nginx
+
+# Configure Nginx server
+printf %s "server {
+    listen 80;
+    listen [::]:80 default_server;
+    root   /var/www/html;
+    index  index.html;
+    location /redirect_me {
+        return 301 https://www.youtube.com/c/JustinMasayda;
+    }
+    error_page 404 /404.html;
+    location /404 {
+        root /var/www/html;
+        internal;
+    }
+}" > /etc/nginx/sites-available/default
+
+# Create Website
+mkdir -p /var/www/html
+echo "Holberton School for the win!" > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+# Launch Nginx server
+sudo service nginx start

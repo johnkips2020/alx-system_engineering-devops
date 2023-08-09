@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Display numbers 1--20 and whether they are bad luck in various countries.
+
+
+n=1
+while [ $n -le 20 ]; do
+	echo $n
+	case $n in
+		4) echo "bad luck from China";;
+		9) echo "bad luck from Japan";;
+		17) echo "bad luck from Italy";;
+	esac
+	((n++))
+done
